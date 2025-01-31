@@ -20,31 +20,51 @@ public class ConcurrentBank {
     }
 
     public void transfer(BankAccount target, BankAccount source, BigDecimal amount) {
-        if (source == target) {
-            throw new IllegalArgumentException("Source and target accounts must be different");
+        if(target.getId().compareTo(source.getId()) < 0) {
+            target.lock();
+            source.lock();
+        } else {
+            source.lock();
+            target.lock();
         }
 
-        if(accounts.isEmpty()) {
-            throw new UnsupportedOperationException("Account list is empty");
-        }
+        try {
+            if (source == target) {
+                throw new IllegalArgumentException("Source and target accounts must be different");
+            }
 
-        if(!accounts.contains(source) || !accounts.contains(target)) {
-            throw new UnsupportedOperationException("Account list does not contain source or target account!");
-        }
+            if(accounts.isEmpty()) {
+                throw new UnsupportedOperationException("Account list is empty");
+            }
 
-        final var sourceAccount = accounts.get(accounts.indexOf(source));
-        if(sourceAccount.getBalance().compareTo(amount) < 0) {
-            throw new UnsupportedOperationException("The requested amount exceeds the available balance in the account!");
-        }
+            if(!accounts.contains(source) || !accounts.contains(target)) {
+                throw new UnsupportedOperationException("Account list does not contain source or target account!");
+            }
 
-        final var targetAccount = accounts.get(accounts.indexOf(target));
-        sourceAccount.withdraw(amount);
-        targetAccount.deposit(amount);
+            final var sourceAccount = accounts.get(accounts.indexOf(source));
+            if(sourceAccount.getBalance().compareTo(amount) < 0) {
+                throw new UnsupportedOperationException("The requested amount exceeds the available balance in the account!");
+            }
+
+            final var targetAccount = accounts.get(accounts.indexOf(target));
+            sourceAccount.withdraw(amount);
+            targetAccount.deposit(amount);
+        } finally {
+            target.unlock();
+            source.unlock();
+        }
     }
 
     public BigDecimal getTotalBalance() {
         return this.accounts.stream()
-                .map(BankAccount::getBalance)
+                .map(account -> {
+                    account.lock();
+                    try {
+                        return account.getBalance();
+                    } finally {
+                        account.unlock();
+                    }
+                })
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

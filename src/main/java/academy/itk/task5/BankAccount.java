@@ -17,21 +17,11 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal amount) {
-        lock.lock();
-        try {
-            balance = balance.add(amount);
-        } finally {
-           lock.unlock();
-        }
+        balance = balance.add(amount);
     }
 
     public void withdraw(BigDecimal amount) {
-        lock.lock();
-        try {
-            balance = balance.subtract(amount);
-        } finally {
-            lock.unlock();
-        }
+        balance = balance.subtract(amount);
     }
 
     public UUID getId() {
@@ -39,12 +29,7 @@ public class BankAccount {
     }
 
     public BigDecimal getBalance() {
-        lock.lock();
-        try {
-            return this.balance;
-        } finally {
-            lock.unlock();
-        }
+        return this.balance;
     }
 
     public void lock() {
