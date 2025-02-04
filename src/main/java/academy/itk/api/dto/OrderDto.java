@@ -1,0 +1,20 @@
+package academy.itk.api.dto;
+
+import academy.itk.enums.OrderStatus;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Data
+public class OrderDto {
+
+    private UUID id;
+
+    @NotNull(message = "Order status cannot be null")
+    private OrderStatus status;
+
+    @NotNull(message = "Price cannot be null")
+    private BigDecimal price;
+}
