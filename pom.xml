@@ -35,12 +35,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>academy.itk</groupId>
-      <artifactId>itk-geometry-library</artifactId>
-      <version>1.1.0</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
