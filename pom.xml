@@ -4,13 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.1</version>
-    <relativePath/>
-  </parent>
-
   <groupId>academy.itk</groupId>
   <artifactId>itk-practical-tasks</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -21,85 +14,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <junit-version>5.11.4</junit-version>
-    <instancio-version>3.2.0</instancio-version>
-    <jackson-version>2.18.2</jackson-version>
-    <lombok-version>1.18.36</lombok-version>
-    <lombok-mapstruct-version>0.2.0</lombok-mapstruct-version>
-    <postgresql-version>42.7.4</postgresql-version>
-    <mapstruct-version>1.6.3</mapstruct-version>
-    <jakarta-version>3.1.0</jakarta-version>
-    <postgresql-version>42.7.4</postgresql-version>
-    <instancio-version>3.2.0</instancio-version>
-    <junit-testcontainers-version>1.20.4</junit-testcontainers-version>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>academy.itk</groupId>
-      <artifactId>itk-geometry-library</artifactId>
-      <version>1.1.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.validation</groupId>
-      <artifactId>jakarta.validation-api</artifactId>
-      <version>${jakarta-version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok-mapstruct-binding</artifactId>
-      <version>${lombok-mapstruct-version}</version>
-    </dependency>
-
-    <!--  DB  -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>${postgresql-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.hypersistence</groupId>
-      <artifactId>hypersistence-utils-hibernate-63</artifactId>
-      <version>3.8.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mapstruct</groupId>
-      <artifactId>mapstruct</artifactId>
-      <version>${mapstruct-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mapstruct</groupId>
-      <artifactId>mapstruct-processor</artifactId>
-      <version>${mapstruct-version}</version>
-    </dependency>
-
-    <!--  TEST  -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -112,66 +29,5 @@
       <version>${junit-version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.instancio</groupId>
-      <artifactId>instancio-junit</artifactId>
-      <version>${instancio-version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>2.3.232</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <configuration>
-          <release>${java.version}</release>
-          <annotationProcessorPaths>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-              <version>${lombok-version}</version>
-            </path>
-            <path>
-              <groupId>org.mapstruct</groupId>
-              <artifactId>mapstruct-processor</artifactId>
-              <version>${mapstruct-version}</version>
-            </path>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok-mapstruct-binding</artifactId>
-              <version>${lombok-mapstruct-version}</version>
-            </path>
-          </annotationProcessorPaths>
-          <compilerArgs>
-            <arg>--enable-preview</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>academy.itk.SpringTaskApplication</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
