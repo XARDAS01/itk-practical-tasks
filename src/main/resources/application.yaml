@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: itk-practical-tasks
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:postgresql://localhost:5432/itk
+    username: root
+    password: root
+    hikari:
+      validation-timeout: 30000

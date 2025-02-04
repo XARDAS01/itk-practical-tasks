@@ -1,0 +1,12 @@
+#spring:
+#  jpa:
+#    open-in-view: true
+#    hibernate:
+#      ddl-auto: validate
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/wallet-service-db-dev
+#    username: root
+#    password: root
+#    enabled: false
+#    hikari:
+#      validation-timeout: 30000
