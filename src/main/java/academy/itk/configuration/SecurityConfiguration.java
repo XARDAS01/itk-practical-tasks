@@ -35,6 +35,8 @@ public class SecurityConfiguration {
     ) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .requiresChannel(channel -> channel
+                        .anyRequest().requiresSecure())
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers(HttpMethod.GET, PUBLIC_GET).permitAll()
                         .requestMatchers(HttpMethod.POST, PUBLIC_POST).permitAll()
