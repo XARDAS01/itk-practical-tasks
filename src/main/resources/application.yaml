@@ -14,3 +14,7 @@ spring:
     password: root
     hikari:
       validation-timeout: 30000
+
+
+app:
+  secret: hncd435l9xmed2334jnrexcvbn6450293845ndwer43hdzmafp73h5m9d70fjmc8sw3
