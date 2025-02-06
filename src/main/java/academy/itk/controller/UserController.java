@@ -1,30 +1,23 @@
 package academy.itk.controller;
 
-import academy.itk.service.UserService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
-@RequestMapping("/api/v1/user")
-public record UserController(UserService userService) {
+@RequestMapping("/api/v1")
+public record UserController() {
 
-    @GetMapping
-    public ResponseEntity<String> getUser() {
-        return ResponseEntity.ok().body("Public User name");
-    }
-
-    @PostMapping("/secure/user")
-    public ResponseEntity<String> getSecureUser(@RequestBody String name) {
-        return ResponseEntity.ok().body(userService.getUser(name));
-    }
-
-    @PostMapping("/secure/moderator")
-    public ResponseEntity<String> getSecureModerator(@RequestBody String name) {
-        return ResponseEntity.ok().body(userService.getModerator(name));
-    }
-
-    @PostMapping("/secure/admin")
-    public ResponseEntity<String> getSecureAdmin(@RequestBody String name) {
-        return ResponseEntity.ok().body(userService.getSuperAdmin(name));
+    @GetMapping("/user")
+    public Map<String, Object> getPrincipalUser(@AuthenticationPrincipal OAuth2User principal) {
+        return new HashMap<>(){{
+            put("name", principal.getAttribute("name"));
+            put("login", principal.getAttribute("login"));
+            put("id", principal.getAttribute("id"));
+            put("email", principal.getAttribute("email"));
+        }};
     }
 }

@@ -1,17 +1,24 @@
 server:
   port: 8080
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: root123
-    key-store-type: PKCS12
-    key-alias: myapp
-    enabled: true
-  http:
-    enabled: false
+#  ssl:
+#    key-store: classpath:keystore.p12
+#    key-store-password: root123
+#    key-store-type: PKCS12
+#    key-alias: myapp
+#    enabled: true
+#  http:
+#    enabled: false
 
 spring:
   application:
     name: itk-practical-tasks
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: ${GITHUB_CLIENT_ID}
+            clientSecret: ${GITHUB_CLIENT_SECRET}
   jpa:
     open-in-view: true
     hibernate:
@@ -22,7 +29,3 @@ spring:
     password: root
     hikari:
       validation-timeout: 30000
-
-
-app:
-  secret: hncd435l9xmed2334jnrexcvbn6450293845ndwer43hdzmafp73h5m9d70fjmc8sw3
