@@ -1,29 +1,15 @@
 server:
   port: 8080
-#  ssl:
-#    key-store: classpath:keystore.p12
-#    key-store-password: root123
-#    key-store-type: PKCS12
-#    key-alias: myapp
-#    enabled: true
-#  http:
-#    enabled: false
 
 spring:
   application:
     name: itk-practical-tasks
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            clientId: ${GITHUB_CLIENT_ID}
-            clientSecret: ${GITHUB_CLIENT_SECRET}
   jpa:
     open-in-view: true
     hibernate:
       ddl-auto: create
   datasource:
+    driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/itk
     username: root
     password: root

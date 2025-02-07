@@ -1,23 +1,18 @@
 package academy.itk.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+import academy.itk.model.User;
+import academy.itk.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1")
-public record UserController() {
+@RequestMapping("/api/v1/user")
+public record UserController(UserService userService) {
 
-    @GetMapping("/user")
-    public Map<String, Object> getPrincipalUser(@AuthenticationPrincipal OAuth2User principal) {
-        return new HashMap<>(){{
-            put("name", principal.getAttribute("name"));
-            put("login", principal.getAttribute("login"));
-            put("id", principal.getAttribute("id"));
-            put("email", principal.getAttribute("email"));
-        }};
+    @PostMapping
+    public ResponseEntity<UUID> createUser(User user) {
+        return ResponseEntity.ok().body(userService.save(user));
     }
 }
