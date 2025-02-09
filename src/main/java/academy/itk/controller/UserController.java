@@ -1,24 +1,25 @@
 package academy.itk.controller;
 
-import academy.itk.model.User;
-import academy.itk.projection.UserProjection;
-import academy.itk.service.UserService;
+import academy.itk.model.Employee;
+import academy.itk.projection.EmployeeProjection;
+import academy.itk.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public record UserController(UserService userService) {
+public record UserController(EmployeeService employeeService) {
 
     @PostMapping
-    public ResponseEntity<UUID> createUser(User user) {
-        return ResponseEntity.ok().body(userService.save(user));
+    public ResponseEntity<UUID> createUser(Employee employee) {
+        return ResponseEntity.ok().body(employeeService.save(employee));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserProjection> getProjection(@PathVariable UUID id) {
-        return ResponseEntity.ok().body(userService.getProjectionById(id));
+    @GetMapping
+    public ResponseEntity<List<EmployeeProjection>> getProjection() {
+        return ResponseEntity.ok().body(employeeService.findEmployeeProjection());
     }
 }
