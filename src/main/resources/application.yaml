@@ -9,7 +9,6 @@ spring:
     hibernate:
       ddl-auto: create
   datasource:
-    driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/itk
     username: root
     password: root
